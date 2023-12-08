@@ -1,10 +1,10 @@
 <template>
   <div>
-    <RouterLink to="/">Go to Home</RouterLink>
-    <RouterLink to="/about">Go to About</RouterLink>
+    <RouterLink to="/">Notes</RouterLink> |
+    <RouterLink to="/stats">Stats</RouterLink>
   </div>
 
-  <RouterView></RouterView>
+  <RouterView />
 </template>
 
 <script setup>
