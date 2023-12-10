@@ -1,10 +1,20 @@
 <template>
-  <div>
-    <RouterLink to="/">Notes</RouterLink> |
-    <RouterLink to="/stats">Stats</RouterLink>
-  </div>
+  <v-app>
+    <v-main>
+      <v-app-bar>
+        <template v-slot:append>
+          <v-btn text="Notes" to="/" prepend-icon="mdi-text"></v-btn>
+          <v-btn
+            text="Stats"
+            to="/stats"
+            prepend-icon="mdi-account-details"
+          ></v-btn>
+        </template>
+      </v-app-bar>
 
-  <RouterView />
+      <RouterView />
+    </v-main>
+  </v-app>
 </template>
 
 <script setup>
