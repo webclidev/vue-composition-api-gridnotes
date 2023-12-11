@@ -1,8 +1,8 @@
 <template>
   <v-app>
-    <v-main>
-      <Navbar />
+    <Navbar />
 
+    <v-main>
       <RouterView />
     </v-main>
   </v-app>

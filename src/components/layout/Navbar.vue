@@ -1,38 +1,49 @@
 <template>
   <v-app-bar color="primary">
-    <template v-slot:title>
+    <v-toolbar-title>
       <p class="font-weight-bold cursor-pointer" @click="brandClickHandler">
         <v-icon icon="mdi-checkbox-marked-circle-auto-outline" />
         Noteballs
       </p>
-    </template>
+    </v-toolbar-title>
 
     <template v-slot:append>
       <v-switch
-        v-model="model"
+        v-model="isDark"
         hide-details
         inset
         false-icon="mdi-weather-sunny"
         true-icon="mdi-weather-night"
-        class="mr-5 theme-switch"
+        class="mr-5 mr-sm-10 theme-switch"
         color="dark"
+        direction="vertical"
       ></v-switch>
 
       <v-btn
-        text="Notes"
-        class="text-capitalize"
-        to="/"
-        prepend-icon="mdi-text"
+        v-for="navigationItem in navigationItems"
+        :key="navigationItem.to"
+        :text="navigationItem.text"
+        class="text-capitalize d-none d-sm-flex"
+        :to="navigationItem.to"
+        :prepend-icon="navigationItem.icon"
       />
 
-      <v-btn
-        text="Stats"
-        class="text-capitalize"
-        to="/stats"
-        prepend-icon="mdi-account-details"
+      <v-app-bar-nav-icon
+        class="hidden-sm-and-up"
+        @click.stop="drawer = !drawer"
       />
     </template>
   </v-app-bar>
+
+  <v-navigation-drawer v-model="drawer" location="right" temporary>
+    <v-list-item
+      v-for="navigationItem in navigationItems"
+      :key="navigationItem.to"
+      :to="navigationItem.to"
+      :title="navigationItem.text"
+      :prepend-icon="navigationItem.icon"
+    ></v-list-item>
+  </v-navigation-drawer>
 </template>
 
 <script setup>
@@ -42,14 +53,28 @@ import { useTheme } from "vuetify";
 const router = useRouter();
 const theme = useTheme();
 
-const model = ref(false);
+const isDark = ref(false);
+const drawer = ref(false);
+
+const navigationItems = [
+  {
+    text: "Notes",
+    to: "/",
+    icon: "mdi-text",
+  },
+  {
+    text: "Stats",
+    to: "/stats",
+    icon: "mdi-account-details",
+  },
+];
 
 const brandClickHandler = () => {
   router.push("/");
 };
 
-watch(model, (model) => {
-  theme.global.name.value = model ? "dark" : "light";
+watch(isDark, (isDark) => {
+  theme.global.name.value = isDark ? "dark" : "light";
 });
 </script>
 
