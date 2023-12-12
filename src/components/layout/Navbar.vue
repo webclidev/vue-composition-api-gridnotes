@@ -1,7 +1,10 @@
 <template>
   <v-app-bar color="primary">
     <v-toolbar-title>
-      <p class="font-weight-bold cursor-pointer" @click="brandClickHandler">
+      <p
+        class="font-weight-bold cursor-pointer text-mono"
+        @click="brandClickHandler"
+      >
         <v-icon icon="mdi-checkbox-marked-circle-auto-outline" />
         Noteballs
       </p>
