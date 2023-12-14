@@ -2,7 +2,7 @@
   <v-card
     :class="['pa-3 bg-primary', props.class]"
     elevation="16"
-    :variant="cardVariant"
+    :variant="theme === 'dark' ? 'tonal' : 'elevated'"
   >
     <v-form>
       <v-textarea
@@ -11,7 +11,7 @@
         auto-grow
         rows="2"
         max-rows="4"
-        :variant="textAreaVariant"
+        :variant="theme === 'dark' ? 'solo-filled' : 'solo'"
         persistent-counter
       >
         <template v-slot:counter="{ counter }">
@@ -36,22 +36,7 @@
 </template>
 
 <script setup>
-import { watch } from "vue";
-import { ref } from "vue";
 import { useTheme } from "vuetify";
-const theme = useTheme();
+const { name: theme } = useTheme();
 const props = defineProps(["class"]);
-
-const cardVariant = ref("elevated");
-const textAreaVariant = ref("solo");
-
-watch(
-  () => theme,
-  (currentTheme) => {
-    currentTheme.global.name.value === "dark"
-      ? ((cardVariant.value = "tonal"), (textAreaVariant.value = "solo-filled"))
-      : ((cardVariant.value = "elevated"), (textAreaVariant.value = "solo"));
-  },
-  { deep: true }
-);
 </script>

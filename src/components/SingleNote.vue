@@ -1,6 +1,6 @@
 <template>
   <v-card
-    :variant="variant"
+    :variant="theme === 'dark' ? 'tonal' : 'elevated'"
     max-width="344"
     max-height="300"
     elevation="16"
@@ -45,22 +45,9 @@
 </template>
 
 <script setup>
-import { ref, watch } from "vue";
 import { useTheme } from "vuetify";
 const props = defineProps(["url"]);
-const theme = useTheme();
-
-const variant = ref("elevated");
-
-watch(
-  () => theme,
-  (currentTheme) => {
-    currentTheme.global.name.value === "dark"
-      ? (variant.value = "tonal")
-      : (variant.value = "elevated");
-  },
-  { deep: true }
-);
+const { name: theme } = useTheme();
 </script>
 
 <style scoped>
