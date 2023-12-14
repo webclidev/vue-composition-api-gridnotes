@@ -3,7 +3,7 @@
     <v-toolbar-title>
       <p
         class="font-weight-bold cursor-pointer text-mono"
-        @click="brandClickHandler"
+        @click="router.push('/')"
       >
         <v-icon icon="mdi-checkbox-marked-circle-auto-outline" />
         Noteballs
@@ -27,7 +27,7 @@
         :key="navigationItem.to"
         :text="navigationItem.text"
         class="text-capitalize d-none d-sm-flex"
-        :to="navigationItem.to"
+        @click="router.push(navigationItem.to)"
         :prepend-icon="navigationItem.icon"
       />
 
@@ -71,10 +71,6 @@ const navigationItems = [
     icon: "mdi-account-details",
   },
 ];
-
-const brandClickHandler = () => {
-  router.push("/");
-};
 
 watch(isDark, (isDark) => {
   theme.global.name.value = isDark ? "dark" : "light";
