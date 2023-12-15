@@ -3,7 +3,7 @@
     <AddNewNote class="mb-6" @addNewNote="addNoteHandler" />
     <v-row align="center" justify="center">
       <v-col v-for="note in notes" :key="note.id" cols="auto">
-        <Note :note="note" />
+        <Note :note="note" @delete="deleteNoteHandler" />
       </v-col>
     </v-row>
   </v-container>
@@ -34,5 +34,9 @@ const addNoteHandler = (content) => {
     id: generateUUID(),
     content,
   });
+};
+
+const deleteNoteHandler = (id) => {
+  notes.value = notes.value.filter((note) => note.id !== id);
 };
 </script>

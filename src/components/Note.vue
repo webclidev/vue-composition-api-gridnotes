@@ -24,7 +24,7 @@
       >
 
       <v-btn
-        @click.prevent
+        @click.prevent="$emit('delete', note.id)"
         variant="tonal"
         prepend-icon="mdi-trash-can-outline"
         min-width="100"
@@ -43,6 +43,7 @@ const props = defineProps({
     required: true,
   },
 });
+defineEmits(["delete"]);
 const { name: theme } = useTheme();
 </script>
 
