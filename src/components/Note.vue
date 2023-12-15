@@ -10,6 +10,10 @@
       <p class="card-text">
         {{ note.content }}
       </p>
+
+      <div class="text-right mt-5 text-disabled text-body-2 font-italic">
+        {{ totalCharacters }}
+      </div>
     </template>
 
     <v-card-actions>
@@ -36,6 +40,7 @@
 </template>
 
 <script setup>
+import { computed } from "vue";
 import { useTheme } from "vuetify";
 const props = defineProps({
   note: {
@@ -45,6 +50,13 @@ const props = defineProps({
 });
 defineEmits(["delete"]);
 const { name: theme } = useTheme();
+
+const totalCharacters = computed(() => {
+  const contentLength = props.note.content.length;
+  const description = `${contentLength} character`;
+
+  return contentLength > 1 ? description + "s" : description;
+});
 </script>
 
 <style scoped>
