@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <AddNewNote class="mb-6" />
+    <AddNewNote class="mb-6" @addNewNote="addNoteHandler" />
     <v-row align="center" justify="center">
       <v-col v-for="note in notes" :key="note.id" cols="auto">
         <Note :note="note" />
@@ -28,4 +28,11 @@ const notes = ref([
       "suggest whether molecular part some over furniture suddenly southern serve citizen were upper region doing surface arrangement slightly dangerous victory edge fine heard row",
   },
 ]);
+
+const addNoteHandler = (content) => {
+  notes.value.unshift({
+    id: generateUUID(),
+    content,
+  });
+};
 </script>

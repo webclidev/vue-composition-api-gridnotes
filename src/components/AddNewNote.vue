@@ -7,12 +7,14 @@
     <v-form>
       <v-textarea
         placeholder="Add a new note"
+        v-model="textarea"
         counter
         auto-grow
         rows="2"
         max-rows="4"
         :variant="theme === 'dark' ? 'solo-filled' : 'solo'"
         persistent-counter
+        ref="textareaRef"
       >
         <template v-slot:counter="{ counter }">
           <p class="text-white">
@@ -29,6 +31,7 @@
         variant="tonal"
         prepend-icon="mdi-note-text-outline"
         class="text-capitalize px-5"
+        @click="addNewNoteHandler"
         >Add new note</v-btn
       ></v-card-actions
     >
@@ -36,7 +39,18 @@
 </template>
 
 <script setup>
+import { ref } from "vue";
 import { useTheme } from "vuetify";
 const { name: theme } = useTheme();
 const props = defineProps(["class"]);
+const emit = defineEmits(["addNewNote"]);
+
+const textarea = ref("");
+const textareaRef = ref(null);
+
+const addNewNoteHandler = () => {
+  emit("addNewNote", textarea.value);
+  textarea.value = "";
+  textareaRef.value.focus();
+};
 </script>
