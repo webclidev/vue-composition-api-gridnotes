@@ -1,9 +1,9 @@
 <template>
   <v-container>
-    <SingleNote />
+    <Note />
   </v-container>
 </template>
 
 <script setup>
-import SingleNote from "@/components/SingleNote.vue";
+import Note from "@/components/Note.vue";
 </script>
