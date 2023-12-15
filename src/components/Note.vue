@@ -28,7 +28,7 @@
       >
 
       <v-btn
-        @click.prevent="$emit('delete', note.id)"
+        @click.prevent="notesStore.deleteNote(note.id)"
         variant="tonal"
         prepend-icon="mdi-trash-can-outline"
         min-width="100"
@@ -42,14 +42,16 @@
 <script setup>
 import { computed } from "vue";
 import { useTheme } from "vuetify";
+import { useNotesStore } from "@/store/notesStore.js";
+
 const props = defineProps({
   note: {
     type: Object,
     required: true,
   },
 });
-defineEmits(["delete"]);
 const { name: theme } = useTheme();
+const notesStore = useNotesStore();
 
 const totalCharacters = computed(() => {
   const contentLength = props.note.content.length;
