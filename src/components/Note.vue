@@ -4,20 +4,11 @@
     max-width="344"
     max-height="300"
     elevation="16"
-    :to="url"
+    :to="note.id"
   >
     <template v-slot:text>
       <p class="card-text">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia aut
-        magnam odit temporibus, nemo iure dolorem, beatae velit quo eius aperiam
-        quisquam ad. Nulla, deleniti aperiam. Culpa sed debitis sint. Atque
-        nesciunt non eos possimus aperiam eum ullam veniam repudiandae sequi
-        alias, odit quaerat vel, est, aspernatur sint. Lorem ipsum dolor sit
-        amet consectetur adipisicing elit. Mollitia aut magnam odit temporibus,
-        nemo iure dolorem, beatae velit quo eius aperiam quisquam ad. Nulla,
-        deleniti aperiam. Culpa sed debitis sint. Atque nesciunt non eos
-        possimus aperiam eum ullam veniam repudiandae sequi alias, odit quaerat
-        vel, est, aspernatur sint.
+        {{ note.content }}
       </p>
     </template>
 
@@ -46,7 +37,12 @@
 
 <script setup>
 import { useTheme } from "vuetify";
-const props = defineProps(["url"]);
+const props = defineProps({
+  note: {
+    type: Object,
+    required: true,
+  },
+});
 const { name: theme } = useTheme();
 </script>
 
