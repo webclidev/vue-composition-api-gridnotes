@@ -12,6 +12,7 @@
           prepend-icon="mdi-note-text-outline"
           class="text-capitalize px-5"
           @click="addNewNoteHandler"
+          :disabled="!noteText.trim()"
           >Add new note</v-btn
         >
       </template>
