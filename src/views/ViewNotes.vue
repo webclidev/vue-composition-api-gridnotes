@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <NoteEditor
-      class="mb-6"
+      class="mb-6 bg-primary"
       v-model:textarea="noteText"
       ref="noteTextRef"
       placeholder="Add a new note"

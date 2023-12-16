@@ -1,10 +1,11 @@
 <template>
   <v-card
-    :class="['pa-3 bg-primary', props.class]"
+    :class="['pa-3', props.class]"
     elevation="16"
     :variant="theme === 'dark' ? 'tonal' : 'elevated'"
   >
     <v-form>
+      <v-label v-if="label">{{ label }}</v-label>
       <v-textarea
         :placeholder="placeholder"
         :value="textarea"
@@ -37,7 +38,7 @@
 import { ref } from "vue";
 import { useTheme } from "vuetify";
 const { name: theme } = useTheme();
-const props = defineProps(["class", "placeholder", "textarea"]);
+const props = defineProps(["class", "placeholder", "label", "textarea"]);
 const emit = defineEmits(["update:textarea"]);
 
 const textareaRef = ref(null);
