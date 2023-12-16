@@ -6,8 +6,9 @@
   >
     <v-form>
       <v-textarea
-        placeholder="Add a new note"
-        v-model="textarea"
+        :placeholder="placeholder"
+        :value="textarea"
+        @input="$emit('update:textarea', $event.target.value)"
         counter
         auto-grow
         rows="2"
@@ -27,14 +28,8 @@
     <v-card-actions>
       <v-spacer></v-spacer>
 
-      <v-btn
-        variant="tonal"
-        prepend-icon="mdi-note-text-outline"
-        class="text-capitalize px-5"
-        @click="addNewNoteHandler"
-        >Add new note</v-btn
-      ></v-card-actions
-    >
+      <slot name="action" />
+    </v-card-actions>
   </v-card>
 </template>
 
@@ -42,15 +37,16 @@
 import { ref } from "vue";
 import { useTheme } from "vuetify";
 const { name: theme } = useTheme();
-const props = defineProps(["class"]);
-const emit = defineEmits(["addNewNote"]);
+const props = defineProps(["class", "placeholder", "textarea"]);
+const emit = defineEmits(["update:textarea"]);
 
-const textarea = ref("");
 const textareaRef = ref(null);
 
-const addNewNoteHandler = () => {
-  emit("addNewNote", textarea.value);
-  textarea.value = "";
+const focus = () => {
   textareaRef.value.focus();
 };
+
+defineExpose({
+  focus,
+});
 </script>
