@@ -8,7 +8,7 @@
       <v-label v-if="label">{{ label }}</v-label>
       <v-textarea
         :placeholder="placeholder"
-        :value="textarea"
+        :model-value="textarea"
         @input="$emit('update:textarea', $event.target.value)"
         counter
         auto-grow

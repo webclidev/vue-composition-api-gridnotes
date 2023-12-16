@@ -34,13 +34,15 @@
 import NoteEditor from "@/components/NoteEditor.vue";
 import { useNotesStore } from "@/store/notesStore.js";
 import { ref } from "vue";
-import { useRouter } from "vue-router";
-
-const noteText = ref("");
-const noteTextRef = ref(null);
+import { useRoute, useRouter } from "vue-router";
 
 const notesStore = useNotesStore();
 const router = useRouter();
+const route = useRoute();
 
+const note = notesStore.getNoteContent(route.params.id);
+
+const noteText = ref(note ? note.content : "");
+const noteTextRef = ref(null);
 const saveNoteHandler = () => {};
 </script>

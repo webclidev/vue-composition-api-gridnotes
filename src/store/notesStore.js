@@ -16,7 +16,11 @@ export const useNotesStore = defineStore("notes", {
     ],
   }),
 
-  getters: {},
+  getters: {
+    getNoteContent: (state) => {
+      return (noteId) => state.notes.find((note) => note.id === noteId);
+    },
+  },
 
   actions: {
     addNote(content) {
