@@ -2,7 +2,7 @@
   <v-card
     :variant="theme === 'dark' ? 'tonal' : 'elevated'"
     max-width="344"
-    max-height="300"
+    max-height="334"
     elevation="16"
   >
     <template v-slot:text>
