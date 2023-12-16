@@ -13,7 +13,7 @@
         counter
         auto-grow
         rows="2"
-        max-rows="4"
+        :max-rows="maxRows"
         :variant="theme === 'dark' ? 'solo-filled' : 'solo'"
         persistent-counter
         ref="textareaRef"
@@ -38,7 +38,25 @@
 import { ref } from "vue";
 import { useTheme } from "vuetify";
 const { name: theme } = useTheme();
-const props = defineProps(["class", "placeholder", "label", "textarea"]);
+const props = defineProps({
+  class: {
+    type: String,
+  },
+  placeholder: {
+    type: String,
+    default: "Type here",
+  },
+  label: {
+    type: String,
+  },
+  textarea: {
+    type: String,
+  },
+  maxRows: {
+    type: String,
+    default: "4",
+  },
+});
 const emit = defineEmits(["update:textarea"]);
 
 const textareaRef = ref(null);

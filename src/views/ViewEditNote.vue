@@ -6,6 +6,7 @@
       ref="noteTextRef"
       placeholder="Edit note"
       label="Edit Note"
+      max-rows="19"
     >
       <template #action>
         <v-btn
