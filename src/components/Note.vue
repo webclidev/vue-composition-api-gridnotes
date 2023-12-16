@@ -4,7 +4,6 @@
     max-width="344"
     max-height="300"
     elevation="16"
-    :to="note.id"
   >
     <template v-slot:text>
       <p class="card-text">
