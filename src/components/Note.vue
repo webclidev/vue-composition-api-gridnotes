@@ -18,7 +18,7 @@
     <v-card-actions>
       <v-spacer></v-spacer>
       <v-btn
-        @click.prevent
+        @click.prevent="router.push(`/edit-note/${note.id}`)"
         variant="tonal"
         prepend-icon="mdi-pencil"
         min-width="100"
@@ -42,6 +42,7 @@
 import { computed } from "vue";
 import { useTheme } from "vuetify";
 import { useNotesStore } from "@/store/notesStore.js";
+import { useRouter } from "vue-router";
 
 const props = defineProps({
   note: {
@@ -51,6 +52,7 @@ const props = defineProps({
 });
 const { name: theme } = useTheme();
 const notesStore = useNotesStore();
+const router = useRouter();
 
 const totalCharacters = computed(() => {
   const contentLength = props.note.content.length;
