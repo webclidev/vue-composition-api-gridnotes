@@ -44,5 +44,9 @@ const note = notesStore.getNoteContent(route.params.id);
 
 const noteText = ref(note ? note.content : "");
 const noteTextRef = ref(null);
-const saveNoteHandler = () => {};
+
+const saveNoteHandler = () => {
+  notesStore.updateNote(route.params.id, noteText);
+  router.push("/");
+};
 </script>
