@@ -6,7 +6,7 @@
         @click="router.push('/')"
       >
         <v-icon icon="mdi-checkbox-marked-circle-auto-outline" />
-        Noteballs
+        GridNotes
       </p>
     </v-toolbar-title>
 
