@@ -17,6 +17,7 @@
         :variant="theme === 'dark' ? 'solo-filled' : 'solo'"
         persistent-counter
         ref="textareaRef"
+        autofocus
       >
         <template v-slot:counter="{ counter }">
           <p class="text-white">
