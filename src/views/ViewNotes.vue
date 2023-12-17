@@ -18,9 +18,24 @@
       </template>
     </NoteEditor>
     <v-row align="center" justify="center">
-      <v-col v-for="note in notesStore.notes" :key="note.id" cols="auto">
-        <Note :note="note" />
-      </v-col>
+      <template v-if="notesStore.notes.length">
+        <v-col v-for="note in notesStore.notes" :key="note.id" cols="auto">
+          <Note :note="note" />
+        </v-col>
+      </template>
+      <template v-else>
+        <v-col cols="12" align="center">
+          <v-icon
+            icon="mdi-note-off-outline"
+            color="grey-lighten-2"
+            size="200"
+            class="mt-16"
+          ></v-icon>
+        </v-col>
+        <v-col align="center">
+          <p class="text-grey">Oops no notes to show!</p>
+        </v-col>
+      </template>
     </v-row>
   </v-container>
 </template>
