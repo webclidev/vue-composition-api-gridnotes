@@ -27,13 +27,48 @@
       >
 
       <v-btn
-        @click.prevent="notesStore.deleteNote(note.id)"
         variant="tonal"
         prepend-icon="mdi-trash-can-outline"
         min-width="100"
         class="text-capitalize"
-        >Delete</v-btn
-      >
+        >Delete
+        <v-dialog
+          v-model="deleteModal"
+          activator="parent"
+          width="auto"
+          max-width="500"
+        >
+          <v-card
+            title="Delete Note"
+            :class="theme === 'dark' ? 'bg-primary' : ''"
+          >
+            <v-card-text>
+              Are you sure you want to delete this note?
+            </v-card-text>
+
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn
+                variant="tonal"
+                prepend-icon="mdi-close"
+                min-width="100"
+                class="text-capitalize"
+                @click="deleteModal = false"
+                >Cancel</v-btn
+              >
+
+              <v-btn
+                variant="tonal"
+                prepend-icon="mdi-trash-can-outline"
+                min-width="100"
+                class="text-capitalize bg-error"
+                @click="notesStore.deleteNote(note.id), (deleteModal = false)"
+                >Delete</v-btn
+              >
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
+      </v-btn>
     </v-card-actions>
   </v-card>
 </template>
@@ -43,6 +78,7 @@ import { computed } from "vue";
 import { useTheme } from "vuetify";
 import { useNotesStore } from "@/store/notesStore.js";
 import { useRouter } from "vue-router";
+import { ref } from "vue";
 
 const props = defineProps({
   note: {
@@ -53,7 +89,7 @@ const props = defineProps({
 const { name: theme } = useTheme();
 const notesStore = useNotesStore();
 const router = useRouter();
-
+const deleteModal = ref(false);
 const totalCharacters = computed(() => {
   const contentLength = props.note.content.length;
   const description = `${contentLength} character`;
