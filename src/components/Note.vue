@@ -36,35 +36,44 @@
           v-model="deleteModal"
           activator="parent"
           width="auto"
-          max-width="500"
+          max-width="300"
         >
           <v-card
             title="Delete Note"
+            class="text-center"
             :class="theme === 'dark' ? 'bg-primary' : ''"
           >
             <v-card-text>
-              Are you sure you want to delete this note?
+              Are you sure that you want to permanently delete the selected
+              note?
             </v-card-text>
 
             <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-btn
-                variant="tonal"
-                prepend-icon="mdi-close"
-                min-width="100"
-                class="text-capitalize"
-                @click="deleteModal = false"
-                >Cancel</v-btn
-              >
+              <v-row dense>
+                <v-col>
+                  <v-btn
+                    variant="tonal"
+                    block
+                    prepend-icon="mdi-close"
+                    class="text-capitalize"
+                    @click="deleteModal = false"
+                    >Cancel</v-btn
+                  >
+                </v-col>
 
-              <v-btn
-                variant="tonal"
-                prepend-icon="mdi-trash-can-outline"
-                min-width="100"
-                class="text-capitalize bg-error"
-                @click="notesStore.deleteNote(note.id), (deleteModal = false)"
-                >Delete</v-btn
-              >
+                <v-col>
+                  <v-btn
+                    variant="tonal"
+                    block
+                    prepend-icon="mdi-trash-can-outline"
+                    class="text-capitalize bg-error"
+                    @click="
+                      notesStore.deleteNote(note.id), (deleteModal = false)
+                    "
+                    >Delete</v-btn
+                  >
+                </v-col>
+              </v-row>
             </v-card-actions>
           </v-card>
         </v-dialog>
